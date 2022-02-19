@@ -23,7 +23,7 @@ public class AttachmentController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false, name = "startDate", defaultValue = "0") long startDate, @RequestParam(required = false, name = "finishDate", defaultValue = "0") long finishDate, @RequestParam(name = "minSize", defaultValue = "0L") Long minSize, @RequestParam(name = "maxSize", defaultValue = "0", required = false) Long maxSize) {
+    public ResponseEntity<?> getAll(@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false, name = "startDate", defaultValue = "0") long startDate, @RequestParam(required = false, name = "finishDate", defaultValue = "0") long finishDate, @RequestParam(name = "minSize", defaultValue = "0", required = false) Long minSize, @RequestParam(name = "maxSize", defaultValue = "0", required = false) Long maxSize) {
         return service.findAllBySort(search, page, size, startDate, finishDate, minSize, maxSize);
     }
 

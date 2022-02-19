@@ -37,7 +37,7 @@ public class AttachmentServiceImpl implements AttachmentService {
     public ResponseEntity<?> save(MultipartFile multipartFile) {
         Attachment file = new Attachment();
         file.setContentType(multipartFile.getContentType());
-        file.setFileSize(multipartFile.getSize()/8/1024);
+        file.setFileSize(multipartFile.getSize() / 8 / 1024);
         file.setName(multipartFile.getOriginalFilename());
         file.setHashId(UUID.randomUUID().toString());
         file.setExtension(getExtension(file.getName()));
@@ -70,13 +70,10 @@ public class AttachmentServiceImpl implements AttachmentService {
         Date from = new Date(startDate);
         Date to = new Date(finishDate);
         if (maxSize == null || maxSize.equals(0L)) {
-            maxSize = limitFileSize;
+            maxSize = limitFileSize*1024;
         }
-        if (startDate == 0L){
-            from = new Date(0);
-        }
-        if (finishDate == 0L){
-            to = new Date(0);
+        if (finishDate == 0L) {
+            to = new Date();
         }
 
         return ResponseEntity.ok(attachmentRepository.findAllBySort(of, search.toLowerCase(), from, to, minSize, maxSize));
